@@ -11,19 +11,30 @@
 -- ============================================================
 
 -- 工單 1：客服查會員
-
+create index if not exists idx_users_email
+on users (email);
 
 -- 工單 2：企業會員的課表
-
+create index if not exists idx_course_bookings_available_courses
+on course_bookings (cancelled_at, user_id);
 
 -- 工單 3：最新購買紀錄牆
-
+create index if not exists idx_credit_purchases_purchase_at
+on credit_purchases (purchase_at);
 
 -- 工單 4：首頁「進行中課程」
+create index if not exists idx_courses_end_at
+on courses (end_at);
 
 
 -- 工單 5：上週開課課程的教練報名統計（思考方向：需新增兩個索引）
+create index if not exists idx_courses_start_at
+on courses (start_at);
 
+create index if not exists idx_course_bookings_course_id
+on course_bookings (course_id);
 
 -- 加分題（選做）：使用部分索引（partial index）讓工單 2 的索引更小、更有效率
-
+create index if not exists idx_course_bookings_active
+on course_bookings (user_id)
+where cancelled_at is null;

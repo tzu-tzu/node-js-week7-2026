@@ -141,3 +141,28 @@ A：這是正常的。`created_at` 帶有時區，用 `DATE()` 轉換出來的�
 
 **Q：本機 measure 全部通過，但 CI（GitHub Actions）卻是未通過？**
 A：最常見的原因是索引只有在 DBeaver 裡建立、沒有寫進 `optimize.sql`。本機的 DBeaver 和專案連的是同一個資料庫，所以你在 DBeaver 建立的索引，本機 measure 也看得到、會跟著同步；但 CI 跑的是一個全新的資料庫，只會執行 `optimize.sql` 裡的內容。因此在 DBeaver 測試成功的索引，記得補回 `optimize.sql`，CI 才會跟著通過。
+
+
+##  小筆記
+參考資料來源
+
+Week 7：PostgreSQL 資料庫索引入門 資料庫進階概念與效能
+https://hackmd.io/@hexschool/S1ZZ0WRNze
+
+Day 28：索引是什麼，為什麼會讓查詢變快  
+https://hackmd.io/yrFZKFPyRt2g-14Bq5FHcQ?view  
+
+Day 29：複合索引與選擇性，如何把索引建立正確  
+https://hackmd.io/7-2HE3yzQIiTX-7Wu6vbyw?view  
+
+Day 30 - 索引的其他用途：排序、JOIN 與「不用建立」的判斷  
+https://hackmd.io/Mc6fCa4eR2mcB-iPr0-rCg?view  
+
+Day 31 - 索引失效的時候  
+https://hackmd.io/xtDzUP-wQiWL0oZ-f5-d6Q?view  
+
+DBeaver 操作教學（第七週任務導向）
+https://hackmd.io/@hexschool/B1vwABYMGl#%E9%96%8B%E5%95%9F-SQL-%E8%BC%B8%E5%85%A5%E6%A1%86
+
+助教直播: 第七堂主線任務
+https://chalk-freedom-ec6.notion.site/3916ab47eb4880359b7ed420ec25990c
